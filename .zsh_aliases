@@ -1,0 +1,8 @@
+alias g='grep -i'
+
+alias get='curl -OL'
+
+alias lr='ls -hartl'
+
+alias work="cd ~/workspace"
+alias wish="cd ~/workspace/wishlist_app"
