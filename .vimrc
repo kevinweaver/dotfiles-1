@@ -6,6 +6,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim' " Let vundle manage itself:
+Plugin 'mattn/emmet-vim'
+Plugin 'alvan/vim-closetag'
 Plugin 'ctrlp/ctrlp.vim'    " Fuzzy finder -- absolutely must have.
 Plugin 'tpope/vim-commentary' " Support for easily toggling comments.
 Plugin 'leshill/vim-json'  " Proper JSON filetype detection, and support.
@@ -27,6 +29,9 @@ Plugin 'vim-ruby/vim-ruby'
 
 " Coffee-script syntax.
 Plugin 'kchmck/vim-coffee-script'
+
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
+let g:closetag_emptyTags_caseSensitive = 1
 
 let g:nerdtree_tabs_open_on_console_startup=1
 let g:multi_cursor_next_key='<C-x>'
@@ -135,6 +140,7 @@ map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 map <C-n> <plug>NERDTreeTabsToggle<CR>
+map <F10> :set invnumber
 cmap w!! %!sudo tee > /dev/null/ %
 
 set history=100
