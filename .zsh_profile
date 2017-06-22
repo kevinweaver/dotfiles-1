@@ -13,10 +13,6 @@ export PATH=$HOME/bin:$PATH
 # Path for RVM
 test -d "$HOME/.rvm/bin" && PATH="$PATH:$HOME/.rvm/bin"
 
-# Rbenv autocomplete and shims
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-# Path for RBENV
-test -d "$HOME/.rbenv/" && PATH="$HOME/.rbenv/bin:$PATH"
 
 # Path changes are made non-destructive with PATH=new_path:$PATH   This is like A=A+B so we preserve the old path
 

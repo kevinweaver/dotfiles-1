@@ -43,6 +43,7 @@ call vundle#end()
 filetype plugin indent on " Filetype auto-detection
 syntax on " Syntax highlighting
 
+
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -91,7 +92,6 @@ nnoremap <C-l> <C-w>l
 
 " Use sane regex's when searching
 nnoremap / /\v
-vnoremap / /\v
 
 " Clear match highlighting
 noremap <leader><space> :noh<cr>:call clearmatches()<cr>
@@ -153,7 +153,7 @@ set backup                                        "file backups enabled
 set writebackup                                   "enabling backups
 set noswapfile                                    "disable swaps - were using backups in 2017
 set pastetoggle=<F2>
-
+set clipboard=unnamedplus
 
 "use ag for ack.vim
 if executable('ag')
@@ -165,3 +165,8 @@ nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 cnoreabbrev Ack Ack!
 "ack for the current word under cursor
 nnoremap <Leader>a :Ack!<Space><C-R><C-W>
+
+nnoremap <C-y> "+y
+vnoremap <C-y> "+y
+nnoremap <C-p> "+gP
+vnoremap <C-p> "+gP
