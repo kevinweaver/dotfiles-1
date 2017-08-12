@@ -166,7 +166,7 @@ cnoreabbrev Ack Ack!
 "ack for the current word under cursor
 nnoremap <Leader>a :Ack!<Space><C-R><C-W>
 
-nnoremap <C-y> "+y
-vnoremap <C-y> "+y
+"nnoremap <C-y> "+y
+vnoremap <C-t> "+y
 nnoremap <C-p> "+gP
 vnoremap <C-p> "+gP
