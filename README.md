@@ -38,3 +38,4 @@ ctr d = page down
 gg = goes to the top of file  
 shift g = goes to the bottom of file  
 . = repeats whatever you just did. helps with tedious tasks  
+fn f10 = setinvnumber (gets rid of line count.)
