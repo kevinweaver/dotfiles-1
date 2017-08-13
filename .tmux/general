@@ -3,7 +3,7 @@
 rename-window Dev
 select-pane -t 0
 # split horizontally by 85%
-split-window -v -p 15
+split-window -v -p 20
 # select bottom pane and split vertically by 25%
 select-pane -t 1
 split-window -h -p 50
@@ -12,11 +12,9 @@ select-pane -t 2
 split-window -h -p 50
 
 # run commands
-send -t 0 wish ENTER
-send -t 1 wish ENTER
-send -t 1 'guard' ENTER
-send -t 2 wish ENTER
-send -t 2 'rails c' ENTER
-send -t 3 wish ENTER
+send -t 0 dbc ENTER
+send -t 1 dbc ENTER
+send -t 2 dbc ENTER
+send -t 3 dbc ENTER
 
 select-pane -t 0

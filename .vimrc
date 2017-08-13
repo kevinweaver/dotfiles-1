@@ -1,3 +1,4 @@
+
 set nocompatible
 
 filetype off
@@ -139,6 +140,7 @@ map <C-k> <C-w><Up>
 map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
+vnoremap <C-t> "+y
 map <C-n> <plug>NERDTreeTabsToggle<CR>
 map <F10> :set invnumber
 cmap w!! %!sudo tee > /dev/null/ %
@@ -165,8 +167,6 @@ nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 cnoreabbrev Ack Ack!
 "ack for the current word under cursor
 nnoremap <Leader>a :Ack!<Space><C-R><C-W>
-
 "nnoremap <C-y> "+y
-vnoremap <C-t> "+y
 nnoremap <C-p> "+gP
 vnoremap <C-p> "+gP
