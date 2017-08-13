@@ -1,172 +1,249 @@
-
-set nocompatible
-
-filetype off
+set nocompatible               " be iproved
+filetype off                   " required!
+"esc is far away, let's try ;; to get us out of insert mode
+imap ;; <esc>
+:nmap ; :
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+"set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 
-Plugin 'gmarik/Vundle.vim' " Let vundle manage itself:
-Plugin 'mattn/emmet-vim'
-Plugin 'alvan/vim-closetag'
-Plugin 'ctrlp/ctrlp.vim'    " Fuzzy finder -- absolutely must have.
-Plugin 'tpope/vim-commentary' " Support for easily toggling comments.
-Plugin 'leshill/vim-json'  " Proper JSON filetype detection, and support.
-Plugin 'pangloss/vim-javascript'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-haml'
-Plugin 'esneider/YUNOcommit.vim'
-Plugin 'indenthtml.vim' " vim indents HTML very poorly on it's own. This fixes a lot of that.
-Plugin 'tpope/vim-markdown' " I write markdown a lot. This is a good syntax.
-Plugin 'groenewege/vim-less'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'jistr/vim-nerdtree-tabs'
+
+"Manage Plugins
+Plugin 'gmarik/vundle'                    "Vim plugin manager
+
+"Autocomplete Plugins
+Plugin 'tpope/vim-surround'               "Adds 'cs' command to change pair characters
+Plugin 'Townk/vim-autoclose'              "Adds closing pairs
+Plugin 'Raimondi/delimitMate'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'mattn/emmet-vim'
+Plugin 'mattn/webapi-vim'
+"Plugin 'Valloric/YouCompleteMe'
+
+"Navigation Plugins
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'         "Adds easy comment and uncomment
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'majutsushi/tagbar'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'tpope/vim-endwise'
+Plugin 'easymotion/vim-easymotion'
+
+"Functional Plugins
+Plugin 'itchyny/calendar.vim'
+Plugin 'esneider/YUNOcommit.vim'
+Plugin 'bling/vim-airline'
+Plugin 'wincent/command-t'
+Plugin 'thoughtbot/vim-rspec'
+
+"Git Plugins
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'               "Adds git commands like :Gdiff, :Gstatus
+
+"Search Plugins
+Plugin 'tpope/vim-unimpaired'
+Plugin 'msanders/snipmate.vim'
+Plugin 'ctrlp/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
-Plugin 'vim-ruby/vim-ruby'
 
-" Coffee-script syntax.
+"Syntax Highlighting Plugins
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-rails'                  "Syntax + error highlight for rails
+Plugin 'tpope/vim-haml'                   "Syntax highlight for haml
+Plugin 'pangloss/vim-javascript'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'leafgarland/typescript-vim'
 
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
-let g:closetag_emptyTags_caseSensitive = 1
 
-let g:nerdtree_tabs_open_on_console_startup=1
+call vundle#end()
+filetype plugin indent on "req
+
+"Vim Multiple Cursors Bindings
+let g:multi_cursor_use_default_mapping=0
+" Default mapping
+"let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_next_key='<C-x>'
 let g:multi_cursor_prev_key='<C-p>'
+"let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
-call vundle#end()
+"6 characters before you complete me kicks in
+let g:ycm_min_num_of_chars_for_completion = 6
+"python from powerline.bindings.vim impor 'source_plugin; source_plugin()
+let g:nerdtree_tabs_open_on_console_startup=0
+"colorscheme solarized
+set background=dark
 
-" We have to turn this stuff back on if we want all of our features.
-filetype plugin indent on " Filetype auto-detection
-syntax on " Syntax highlighting
+if has('gui_running')
+  set guifont=Inconsolata\ 13    " set fonts for gui vim
+  set guioptions=egmrt           " hide the gui menubar
+endif
 
+" ARROW KEYS ARE UNACCEPTABLE
+"  map <Left> :echo "no!"<cr>
+"  map <Right> :echo "no!"<cr>
+"  map <Up> :echo "no!"<cr>
+"  map <Down> :echo "no!"<cr>
 
+" Pretty obvious defaults if you ask me...
+  command! W :w
+  command! Q :q
+  command! Wq :wq
+  command! WQ :wq
+
+" Map ctrl-movement keys to window switching
+ map <C-k> <C-w><Up>
+ map <C-j> <C-w><Down>
+ map <C-l> <C-w><Right>
+ map <C-h> <C-w><Left>
+ map <C-n> <plug>NERDTreeTabsToggle<CR>
+ map <C-m> :TagbarToggle<CR>
+
+ cmap w!! %!sudo tee > /dev/null/ %
+
+set backspace=indent,eol,start
+set history=100
+
+set number        " Show line numbers
+set nowrap        " Turn off Text Wrap
+set scrolloff=3   " Keep more context when scrolling off the end of a buffer
+set ruler         " show the cursor position all the time
+set wildmenu      " Make tab completion for files/buffers act like bash
+set showcmd       " display incomplete commands
+set hidden        " keep undo history for background buffers
+set autoread      " autoamically read the file again when it is changed externally
+set showtabline=2 " always show tab bar
+set term=cons25   " fix issue with arrow keys
+
+" Editting configuration
+syntax enable
+set pastetoggle=<F2> 
+set term=screen-256color
+set ts=2
+set smarttab
+set showmatch
+set encoding=utf-8
+set noshowmode
+set backup
+set backupdir=~/.vim/backups
+set directory=~/.vim/tmp
+set noerrorbells
+set belloff=all
+set timeoutlen=350
+"set mousehide
+set expandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set expandtab " use spaces instead of tabs.
-set smarttab " let's tab key insert 'tab stops', and bksp deletes tabs.
-set shiftround " tab / shifting moves to closest tabstop.
-set autoindent " Match indents on new lines.
-set smartindent " Intellegently dedent / indent new lines based on rules.
-set backspace=indent,eol,start
+set autoindent
+set smartindent
 
-" don't nag me when hiding buffers
-set hidden " allow me to have buffers with unsaved changes.
-set autoread " when a file has changed on disk, just load it. Don't ask.
+"enable fold based on indent with max level of 10
+set foldmethod=indent
+set foldnestmax=2
+set foldlevel=100
+set foldenable
 
-" Make search more sane
-set ignorecase " case insensitive search
-set smartcase " If there are uppercase letters, become case-sensitive.
-set incsearch " live incremental searching
-set showmatch " live match highlighting
-set hlsearch " highlight matches
-set gdefault " use the `g` flag by default.
-
-" allow the cursor to go anywhere in visual block mode.
-set virtualedit+=block
-
-" leader is a key that allows you to have your own "namespace" of keybindings.
-" You'll see it a lot below as <leader>
-let mapleader = "\\"
-
-
-" So we don't have to press shift when we want to get into command mode.
-nnoremap ; :
-vnoremap ; :
-
-" So we don't have to reach for escape to leave insert mode.
-inoremap jf <esc>
-
-" create new vsplit, and switch to it.
-noremap <leader>v <C-w>v
-
-" bindings for easy split nav
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" Use sane regex's when searching
-nnoremap / /\v
-
-" Clear match highlighting
-noremap <leader><space> :noh<cr>:call clearmatches()<cr>
-
-" Quick buffer switching - like cmd-tab'ing
-nnoremap <leader><leader> <c-^>
-
-
-" Visual line nav, not real line nav
-" If you wrap lines, vim by default won't let you move down one line to the
-" wrapped portion. This fixes that.
-noremap j gj
-noremap k gk
-
-" Plugin settings:
-" Below are some 'sane' (IMHO) defaults for a couple of the above plugins I
-" referenced.
-
-" Map the key for toggling comments with vim-commentary
-nnoremap <leader>c <Plug>CommentaryLine
-
-" Remap ctrlp to ctrl-t -- map it however you like, or stick with the
-" defaults. Additionally, in my OS, I remap caps lock to control. I never use
-" caps lock. This is highly recommended.
-let g:ctrlp_map = '<c-t>'
-
-" Let ctrlp have up to 30 results.
-let g:ctrlp_max_height = 30
-
-" ARROW KEYS ARE UNACCEPTABLE
-"map <Left> :echo "no!"<cr>
-"map <Right> :echo "no!"<cr>
-"map <Up> :echo "no!"<cr>
-"map <Down> :echo "no!"<cr>
-
-"Easy save and quit typos
-command! W :w
-command! Q :q
-command! Wq :wq
-command! WQ :wq
-
-
-" Map ctrl-movement keys to window switching
-map <C-k> <C-w><Up>
-map <C-j> <C-w><Down>
-map <C-l> <C-w><Right>
-map <C-h> <C-w><Left>
-vnoremap <C-t> "+y
-map <C-n> <plug>NERDTreeTabsToggle<CR>
-map <F10> :set invnumber
-cmap w!! %!sudo tee > /dev/null/ %
-
-set history=100
-set number  " show line numbers
-set nowrap
-set ruler
-set backupdir=~/.vim/backups
-set directory=~/.vim/tmp
+set undofile                                      "allow per file undo persistance
+set undoreload=10000
+set undodir=~/.vim/tmp/undo//                     "undo dir
+set backupdir=~/.vim/tmp/backups//                "backup dir -- // saves full filepath with % as folder delimeter
+set directory=~/.vim/tmp/swap//                   "temporary dir for swap files
 set backup                                        "file backups enabled
 set writebackup                                   "enabling backups
 set noswapfile                                    "disable swaps - were using backups in 2017
-set pastetoggle=<F2>
-set clipboard=unnamedplus
+
+" if undo and backup directories do not exist, make them
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮  "show unicode characters for tab,eol,and with wrap on
+set showbreak=↪
+
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
+nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z
+"clears eol whitespace
+
+nmap <f3> :TagbarToggle<CR>
+
+" set smartindent
+set laststatus=2
+set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+
+"Search Stuff
+set hlsearch  " highlight previous search matches
+set incsearch " search as you type
+" Make searches case-sensitive only if they contain upper-case characters
+set ignorecase
+set smartcase
+"pressing enter key in command mode removes search highlighting
+nnoremap <CR> :nohlsearch <CR>
+nnoremap Q <nop>
+
+"set mouse=a
+
+"Highlight trailing whitespace in red
+:highlight ExtraWhitespace ctermbg=red guibg=red
+:au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+:au InsertLeave * match ExtraWhitespace /\s\+$/
+:match ExtraWhitespace /\s\+$/           " Show trailing whitespace
+:match ExtraWhitespace /\s\+$\| \+\ze\t/ " Show trailing whitespace and spaces before a tab
+:match ExtraWhitespace /[^\t]\zs\t\+/    " Show tabs that are not at the start of a line
+
+cnoreabbrev td tab drop
+
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>g :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+"Spring rspec
+"let g:rspec_command = '!spring rspec {spec}'
+let g:rspec_command = '!RAILS_ENV=test bundle exec rspec {spec} --color --profile'
+
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+:nnoremap <LeftMouse> m'<LeftMouse>
+:nnoremap <LeftRelease> <LeftRelease>g``
 
 "use ag for ack.vim
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 "do not have ack jump to first response
 cnoreabbrev Ack Ack!
 "ack for the current word under cursor
 nnoremap <Leader>a :Ack!<Space><C-R><C-W>
-"nnoremap <C-y> "+y
-nnoremap <C-p> "+gP
-vnoremap <C-p> "+gP
+
+set mouse+=a
+if &term =~ '^screen'
+    " tmux knows the extended mouse mode
+    set ttymouse=xterm2
+endif
+
+" tmux knows the extended mouse mode
+nnoremap <leader>. :CtrlPTag<cr>
+
+" Auto open tagbar
+"autocmd VimEnter * nested :call tagbar#autoopen(1)
+nmap <F8> :TagbarToggle<CR>
+
+nmap <F12> :vs ~/github.com/carmensea/dotfiles/Sharpen.md
+
+"Emmet Plugin
+let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.snippets.json')), "\n"))
+
+vnoremap <C-t> "+y
+map <F10> :set invnumber
