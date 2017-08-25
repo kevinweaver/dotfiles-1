@@ -1,5 +1,6 @@
 navigating my jawn:  
 
+:%s/SEARCH/REPLACE/gc - this finds and replaces while asking you per instance
 i = insert mode  
 o = insert on new line  
 p = paste on new line  

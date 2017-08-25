@@ -3,16 +3,20 @@ filetype off                   " required!
 "esc is far away, let's try ;; to get us out of insert mode
 imap ;; <esc>
 :nmap ; :
-
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 "set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+set clipboard=unnamedplus
 
+nmap <F9> :vs ~/devbootcamp/notes
+
+Plugin 'tpope/vim-endwise'
 
 "Manage Plugins
 Plugin 'gmarik/vundle'                    "Vim plugin manager
 
 "Autocomplete Plugins
+Plugin 'alvan/vim-closetag'
 Plugin 'tpope/vim-surround'               "Adds 'cs' command to change pair characters
 Plugin 'Townk/vim-autoclose'              "Adds closing pairs
 Plugin 'Raimondi/delimitMate'
@@ -72,6 +76,8 @@ let g:ycm_min_num_of_chars_for_completion = 6
 "python from powerline.bindings.vim impor 'source_plugin; source_plugin()
 let g:nerdtree_tabs_open_on_console_startup=0
 "colorscheme solarized
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml"    
+let g:closetag_emptyTags_caseSensitive = 1
 set background=dark
 
 if has('gui_running')
@@ -98,6 +104,7 @@ endif
  map <C-h> <C-w><Left>
  map <C-n> <plug>NERDTreeTabsToggle<CR>
  map <C-m> :TagbarToggle<CR>
+ nnoremap <C-p> "+gP"
 
  cmap w!! %!sudo tee > /dev/null/ %
 
@@ -247,3 +254,4 @@ let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.snippets
 
 vnoremap <C-t> "+y
 map <F10> :set invnumber
+vnoremap <C-p> "+gP"
