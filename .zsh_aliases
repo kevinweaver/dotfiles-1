@@ -6,6 +6,6 @@ alias lr='ls -hartl'
 
 alias work="cd ~/workspace"
 alias wish="cd ~/workspace/wishlist_app"
-alias dbc="cd ~/devbootcamp/phase-1/"
+alias dbc="cd ~/devbootcamp/phase-3/"
 alias dot="cd ~/dotfiles"
 alias notes="cd ~/devbootcamp/notes"

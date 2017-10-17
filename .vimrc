@@ -1,5 +1,4 @@
 set nocompatible               " be iproved
-silent !stty -ixon > /dev/null 2>/dev/null
 filetype off                   " required!
 "esc is far away, let's try ;; to get us out of insert mode
 imap ;; <esc>
@@ -106,6 +105,7 @@ endif
  map <C-n> <plug>NERDTreeTabsToggle<CR>
  map <C-m> :TagbarToggle<CR>
  nnoremap <C-p> "+gP"
+ vmap <C-t> "*y
 
  cmap w!! %!sudo tee > /dev/null/ %
 

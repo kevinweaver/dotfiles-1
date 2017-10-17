@@ -2,7 +2,6 @@
 ZSH=$HOME/.oh-my-zsh
 
 DEFAULT_USER="Carmen"
-stty -xion
 ZSH_THEME="mh"
 #ZSH_THEME="agnoster"
 #ZSH_THEME="powerlevel9k/powerlevel9k"
