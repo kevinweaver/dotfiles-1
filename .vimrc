@@ -1,4 +1,5 @@
 set nocompatible               " be iproved
+silent !stty -ixon > /dev/null 2>/dev/null
 filetype off                   " required!
 "esc is far away, let's try ;; to get us out of insert mode
 imap ;; <esc>
@@ -236,7 +237,7 @@ nnoremap <Leader>a :Ack!<Space><C-R><C-W>
 
 set mouse+=a
 if &term =~ '^screen'
-    " tmux knows the extended mouse mode
+  " tmux knows the extended mouse mode
     set ttymouse=xterm2
 endif
 
@@ -252,6 +253,5 @@ nmap <F12> :vs ~/github.com/carmensea/dotfiles/Sharpen.md
 "Emmet Plugin
 let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.snippets.json')), "\n"))
 
-vnoremap <C-t> "+y
 map <F10> :set invnumber
 vnoremap <C-p> "+gP"
